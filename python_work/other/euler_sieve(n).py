@@ -15,3 +15,29 @@ def euler_sieve(n):
                 break
 
     return primes
+
+def chose(n):
+    prime=[]
+    isprime=[True]*(n+1)
+    isprime[0]=isprime[1]=False
+
+    for i in range(2,n+1):
+        if isprime[i]:
+            prime.append(i)
+            for k in range(i**2,n+1,i):
+                isprime[k]=False
+    return prime
+
+p=chose(10001)
+case=0
+for _ in range(int(input())):
+    case+=1
+    s=int(input())
+    print(f'Case{case}:')
+    ans=[]
+    for i in p:
+        if i<s and str(i)[-1]=='1':
+            ans.append(i)
+    if ans: print(*ans)
+    else:
+        print('NULL')
