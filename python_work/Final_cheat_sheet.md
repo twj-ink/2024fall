@@ -2,6 +2,47 @@ from sympy.codegen.fnodes import merge
 
 # **计概 CHEAT-SHEET**
 
+
+<!-- TOC -->
+* [**计概 CHEAT-SHEET**](#计概-cheat-sheet)
+    * [I.DP](#idp)
+      * [1.背包问题](#1背包问题)
+      * [2.整数分割问题](#2整数分割问题)
+      * [3.序列dp+数学归纳思维](#3序列dp数学归纳思维)
+      * [4.设置多个dp数组+数学归纳思维](#4设置多个dp数组数学归纳思维)
+      * [5.Kadane算法](#5kadane算法)
+    * [II.Dilworth Theory](#iidilworth-theory)
+    * [III.PREFIX SUM](#iiiprefix-sum)
+      * [1.前缀和数组](#1前缀和数组)
+      * [2.前缀和的特殊用法(哈希表)](#2前缀和的特殊用法哈希表)
+    * [IV.SORTING](#ivsorting)
+      * [1.冒泡排序](#1冒泡排序)
+      * [2.归并排序 --> 递归](#2归并排序----递归)
+      * [3.快速排序 --> 递归，选基准](#3快速排序----递归选基准)
+      * [4.lambda函数](#4lambda函数)
+    * [V.SEARCHING](#vsearching)
+      * [1.dfs](#1dfs)
+      * [2.BFS](#2bfs)
+      * [3.Dijkstra算法](#3dijkstra算法)
+      * [4.SPFA算法](#4spfa算法)
+    * [VI.DATA STRUCTURE](#vidata-structure)
+      * [1.STACK](#1stack)
+      * [2.HEAPQ](#2heapq)
+    * [VII.INTERVAL PROBLEMS](#viiinterval-problems)
+    * [VIII.Other trivial things](#viiiother-trivial-things)
+      * [1.求解或判断质数](#1求解或判断质数)
+      * [2.分解质因数](#2分解质因数)
+    * [BASIC GRAMMAR](#basic-grammar)
+      * [1.零碎](#1零碎)
+      * [2.二分查找](#2二分查找)
+      * [3.排列组合](#3排列组合)
+      * [4.zip函数](#4zip函数)
+      * [5.矩阵运算](#5矩阵运算)
+    * [碎碎念](#碎碎念)
+<!-- TOC -->
+
+
+
 ### I.DP
 #### 1.背包问题
 初始化：如果要求恰好装满则为0；如果有可能装不满为-inf
