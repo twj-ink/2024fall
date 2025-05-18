@@ -1025,6 +1025,116 @@ else:
         print(' '.join(map(str,i)))
 ```
 ---
+
+#### 5. fibonacci
+
+```python
+MOD = 10**9 + 7  # 可根据需要修改模数
+
+def mat_mult(A, B):
+    """2x2矩阵乘法"""
+    return [
+        [(A[0][0]*B[0][0] + A[0][1]*B[1][0]) % MOD,
+         (A[0][0]*B[0][1] + A[0][1]*B[1][1]) % MOD],
+        [(A[1][0]*B[0][0] + A[1][1]*B[1][0]) % MOD,
+         (A[1][0]*B[0][1] + A[1][1]*B[1][1]) % MOD]
+    ]
+
+def mat_pow(mat, power):
+    """矩阵快速幂"""
+    result = [[1, 0], [0, 1]]  # 单位矩阵
+    while power > 0:
+        if power % 2 == 1:
+            result = mat_mult(result, mat)
+        mat = mat_mult(mat, mat)
+        power //= 2
+    return result
+
+def fib(n):
+    """返回第 n 个斐波那契数 (F(0)=0, F(1)=1)"""
+    if n == 0:
+        return 0
+    base = [[1, 1], [1, 0]]
+    res = mat_pow(base, n - 1)
+    return res[0][0]  # F(n)
+
+# 示例
+print(fib(10))  # 输出 55
+```
+
+#### 6. euler_sieve
+
+```python
+def euler_sieve(n):
+    primes = []
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False  # 0和1不是质数
+
+    for i in range(2, n + 1):
+        if is_prime[i]:
+            primes.append(i)  # i 是质数
+        for prime in primes:
+            if i * prime > n:
+                break
+            is_prime[i * prime] = False
+            # 如果 prime 是 i 的最小质因数，停止继续筛选
+            if i % prime == 0:
+                break
+
+    return primes
+
+def chose(n):
+    prime=[]
+    isprime=[True]*(n+1)
+    isprime[0]=isprime[1]=False
+
+    for i in range(2,n+1):
+        if isprime[i]:
+            prime.append(i)
+            for k in range(i**2,n+1,i):
+                isprime[k]=False
+    return prime
+```
+
+#### 7. quick power
+
+```python
+#内置的pow很快，mth.pow输出浮点数，直接输出整数
+#下面是快速幂
+#若exp%2==0，则base**exp=(base**2)**(exp//2)
+###指数减半，底数平方########
+def quick_pow(base,exp,mod):
+    result=1
+    while exp>0:
+        if exp%2==1:
+            result=result*base%mod
+        base=base*base%mod
+        exp//=2
+    return result
+
+print(pow(2,1000000000000,10**9+7))
+print(quick_pow(2,1000000000000,10**9+7))
+# print((2**1000000000000)%10**9+7) 很慢！！
+```
+
+#### 8. pisano period
+
+```python
+#斐波那契数列对k取模的数列呈现pisano周期
+def get_pisano_period(n,k):
+    if k==1:
+        return 1
+    a,b,i=1,1,2
+    while True:
+        a,b=b,(a+b)%k
+        i+=1
+        if a==1 and b==0:
+            return i
+#如果想计算第n个能被k整除的项的index，实际上就是找摸为0
+#的周期，这样只需要限制if b==0: return i即可，
+#因为出现0也是有周期性的
+```
+
 ### 碎碎念
 1. 考试的时候不要受到旁边同学的影响，要坦然接受别人的优秀，自己要稳住，保持头脑清晰，认真读题。
 2. 交代码的时候把调试的地方注释掉。
